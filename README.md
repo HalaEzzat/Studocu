@@ -91,7 +91,7 @@ This repository demonstrates a robust, automated, and reproducible CI/CD pipelin
 To enter the dev environment, run:
 
 ```bash
-nix develop
+nix develop --extra-experimental-features nix-command --extra-experimental-features flakes
 ```
 
 This provides:
