@@ -138,6 +138,8 @@ npm run build
 npm start
 ```
 This runs the server on [localhost:8080](http://localhost:8080).
+![image](https://github.com/user-attachments/assets/d5e4a522-57d2-4971-af5b-9633f4bfb87f)
+
 
 ### 4. Build & Run Container Locally
 
