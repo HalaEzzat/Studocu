@@ -50,4 +50,4 @@ jobs:
         run: python scripts/pipeline.py
         env:
           IMAGE_REPO: ghcr.io/${{ github.repository_owner }}/Studocu
-          IMAGE_TAG: ${{ github.sha }}
+          IMAGE_TAG: latest
