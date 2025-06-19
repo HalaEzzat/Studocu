@@ -10,24 +10,39 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-
-        python-with-packages = pkgs.python311.withPackages (ps: with ps; [
-          pip
-          dagger-io
-        ]);
-      in {
+      in
+      {
         devShells.default = pkgs.mkShell {
           buildInputs = [
             pkgs.nodejs_22
-            python-with-packages
+            pkgs.python311
+            pkgs.python311Packages.venv
             pkgs.git
           ];
 
           shellHook = ''
-            echo "Dev environment ready."
-            echo "Python: $(python --version)"
-            echo "Node: $(node --version)"
-            echo "Dagger: $(python -m dagger --version || true)"
+            # Create virtual environment if it doesn't exist
+            if [ ! -d .venv ]; then
+              python -m venv .venv
+            fi
+
+            # Activate the virtual environment
+            source .venv/bin/activate
+
+            # Install dagger if not already installed
+            if ! pip show dagger-io > /dev/null 2>&1; then
+              pip install --upgrade pip
+              pip install dagger-io
+            fi
+
+            # Install Node packages if needed
+            if [ -f package-lock.json ]; then
+              npm ci
+            else
+              npm install
+            fi
+
+            echo "Dev environment ready. Python and Node.js are set up."
           '';
         };
       });
