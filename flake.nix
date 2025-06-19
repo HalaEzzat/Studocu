@@ -16,33 +16,31 @@
           buildInputs = [
             pkgs.nodejs_22
             pkgs.python311
-            pkgs.python311Packages.venv
             pkgs.git
           ];
 
           shellHook = ''
-            # Create virtual environment if it doesn't exist
+            # Set up Python virtual environment
             if [ ! -d .venv ]; then
               python -m venv .venv
             fi
 
-            # Activate the virtual environment
             source .venv/bin/activate
 
-            # Install dagger if not already installed
+            # Install dagger-io if not installed
             if ! pip show dagger-io > /dev/null 2>&1; then
               pip install --upgrade pip
               pip install dagger-io
             fi
 
-            # Install Node packages if needed
+            # Install Node.js dependencies
             if [ -f package-lock.json ]; then
               npm ci
             else
               npm install
             fi
 
-            echo "Dev environment ready. Python and Node.js are set up."
+            echo "Dev environment ready."
           '';
         };
       });
