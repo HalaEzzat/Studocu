@@ -35,10 +35,10 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      # Install Node.js dependencies
-      - name: Install Node.js dependencies
-        run: |
-          npm ci
+      # # Install Node.js dependencies
+      # - name: Install Node.js dependencies
+      #   run: |
+      #     npm ci
 
       # Authenticate with GitHub Container Registry (GHCR)
       - name: Log in to GHCR
