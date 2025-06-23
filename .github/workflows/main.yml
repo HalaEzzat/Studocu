@@ -38,7 +38,6 @@ jobs:
       # Install Node.js dependencies
       - name: Install Node.js dependencies
         run: |
-          npm install
           npm ci
 
       # Authenticate with GitHub Container Registry (GHCR)
