@@ -1,4 +1,4 @@
-# StuDocu CI/CD Engineer Take-Home Assignment
+# CICD Project
 
 ## Table of Contents
 
